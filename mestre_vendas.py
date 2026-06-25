@@ -273,7 +273,7 @@ if st.session_state.etapa == "Login":
             st.markdown("<hr class='divider'>", unsafe_allow_html=True)
             st.markdown("**Ou entre com outro nome:**")
 
-        nome  = st.text_input("Seu Nome:")
+        nome  = st.text_input("Seu Nome:", key="text_input_Seu_Nome__L276")
         chave = st.text_input("Sua Chave API da Groq:", type="password", key="chave_nova")
 
         if not perfis:
@@ -364,17 +364,17 @@ elif st.session_state.etapa == "App":
     with st.expander("⚙️ Seu produto (clique para configurar)", expanded=(not st.session_state.produto_padrao)):
         col_pa, col_pb, col_pc, col_pd = st.columns(4)
         with col_pa:
-            st.session_state.produto_padrao = st.text_input("📦 Seu produto:", value=st.session_state.produto_padrao, placeholder="ex: creme para cabelo cacheado")
-            st.session_state.nicho_padrao   = st.text_input("🎯 Nicho:", value=st.session_state.nicho_padrao, placeholder="ex: beleza, fitness, pet...")
+            st.session_state.produto_padrao = st.text_input("📦 Seu produto:", value=st.session_state.produto_padrao, placeholder="ex: creme para cabelo cacheado", key="text_input___Seu_produto__L367")
+            st.session_state.nicho_padrao   = st.text_input("🎯 Nicho:", value=st.session_state.nicho_padrao, placeholder="ex: beleza, fitness, pet...", key="text_input___Nicho__L368")
         with col_pb:
-            st.session_state.preco_custo  = st.number_input("💸 Custo do produto (R$):", min_value=0.0, value=float(st.session_state.preco_custo), step=0.5)
-            st.session_state.preco_venda  = st.number_input("💰 Preço de venda (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5)
+            st.session_state.preco_custo  = st.number_input("💸 Custo do produto (R$):", min_value=0.0, value=float(st.session_state.preco_custo), step=0.5, key="number_input___Custo_do_produto__R____L370")
+            st.session_state.preco_venda  = st.number_input("💰 Preço de venda (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5, key="number_input___Pre_o_de_venda__R____L371")
         with col_pc:
             st.session_state.canal_padrao = st.selectbox("📲 Canal principal:", [
                 "WhatsApp","Instagram","Mercado Livre","Shopee","Loja própria","TikTok Shop","Físico/loja","Múltiplos canais"
             ], index=["WhatsApp","Instagram","Mercado Livre","Shopee","Loja própria","TikTok Shop","Físico/loja","Múltiplos canais"].index(
                 st.session_state.canal_padrao) if st.session_state.canal_padrao in
-                ["WhatsApp","Instagram","Mercado Livre","Shopee","Loja própria","TikTok Shop","Físico/loja","Múltiplos canais"] else 0)
+                ["WhatsApp","Instagram","Mercado Livre","Shopee","Loja própria","TikTok Shop","Físico/loja","Múltiplos canais"] else 0, key="widget_multi_1")
         with col_pd:
             if st.session_state.preco_custo > 0 and st.session_state.preco_venda > 0:
                 margem = round((st.session_state.preco_venda - st.session_state.preco_custo) / st.session_state.preco_venda * 100, 1)
@@ -477,14 +477,14 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto   = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, placeholder="ex: creme para cabelo cacheado")
-            descricao = st.text_area("📝 Descreva o produto:", height=80, placeholder="ex: creme leave-in para cachos, 300ml, vegano, sem sulfato...")
-            concorrentes = st.text_input("🏆 Principais concorrentes:", placeholder="ex: Salon Line, Cachos e Afins, marcas do Mercado Livre...")
+            produto   = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, placeholder="ex: creme para cabelo cacheado", key="text_input___Produto__L480")
+            descricao = st.text_area("📝 Descreva o produto:", height=80, placeholder="ex: creme leave-in para cachos, 300ml, vegano, sem sulfato...", key="text_area___Descreva_o_produto__L481")
+            concorrentes = st.text_input("🏆 Principais concorrentes:", placeholder="ex: Salon Line, Cachos e Afins, marcas do Mercado Livre...", key="text_input___Principais_concorrentes_L482")
         with col2:
-            nicho     = st.text_input("🎯 Nicho:", value=st.session_state.nicho_padrao, placeholder="ex: beleza, saúde, pet, casa...")
-            custo     = st.number_input("💸 Custo do produto (R$):", min_value=0.0, value=float(st.session_state.preco_custo), step=0.5)
-            preco     = st.number_input("💰 Preço de venda pretendido (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5)
-            canal     = st.text_input("📲 Canal de venda atual:", value=st.session_state.canal_padrao)
+            nicho     = st.text_input("🎯 Nicho:", value=st.session_state.nicho_padrao, placeholder="ex: beleza, saúde, pet, casa...", key="text_input___Nicho__L484")
+            custo     = st.number_input("💸 Custo do produto (R$):", min_value=0.0, value=float(st.session_state.preco_custo), step=0.5, key="number_input___Custo_do_produto__R____L485")
+            preco     = st.number_input("💰 Preço de venda pretendido (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5, key="number_input___Pre_o_de_venda_pretendi_L486")
+            canal     = st.text_input("📲 Canal de venda atual:", value=st.session_state.canal_padrao, key="text_input___Canal_de_venda_atual__L487")
 
         if st.button("🧠 GERAR DIAGNÓSTICO COMPLETO"):
             if produto.strip():
@@ -550,13 +550,13 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_m  = st.text_input("📦 Produto:", value=st.session_state.produto_padrao)
-            capital    = st.text_input("💰 Capital disponível para investir:", placeholder="ex: R$500, R$2.000, R$10.000...")
-            experiencia= st.selectbox("📊 Sua experiência em vendas:", ["Nunca vendi nada","Já vendi mas pouco","Tenho experiência","Sou vendedor experiente"])
+            produto_m  = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, key="text_input___Produto__L553")
+            capital    = st.text_input("💰 Capital disponível para investir:", placeholder="ex: R$500, R$2.000, R$10.000...", key="text_input___Capital_dispon_vel_para_L554")
+            experiencia= st.selectbox("📊 Sua experiência em vendas:", ["Nunca vendi nada","Já vendi mas pouco","Tenho experiência","Sou vendedor experiente"], key="selectbox___Sua_experi_ncia_em_vend_L555")
         with col2:
-            objetivo_m = st.text_input("🎯 Objetivo mensal:", placeholder="ex: R$3.000/mês, viver do negócio, renda extra...")
-            tempo_disp = st.selectbox("⏰ Tempo disponível por dia:", ["1-2 horas","3-4 horas","Período integral","Final de semana"])
-            tem_estoque= st.radio("📦 Tem produto em mãos?", ["Sim, tenho estoque","Não tenho ainda","Estou decidindo"], horizontal=True)
+            objetivo_m = st.text_input("🎯 Objetivo mensal:", placeholder="ex: R$3.000/mês, viver do negócio, renda extra...", key="text_input___Objetivo_mensal__L557")
+            tempo_disp = st.selectbox("⏰ Tempo disponível por dia:", ["1-2 horas","3-4 horas","Período integral","Final de semana"], key="selectbox___Tempo_dispon_vel_por_di_L558")
+            tem_estoque= st.radio("📦 Tem produto em mãos?", ["Sim, tenho estoque","Não tenho ainda","Estou decidindo"], horizontal=True, key="radio___Tem_produto_em_m_os__L559")
 
         if st.button("🎯 DEFINIR MEU MODELO IDEAL"):
             if produto_m.strip():
@@ -612,16 +612,16 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_o  = st.text_input("📦 Produto principal:", value=st.session_state.produto_padrao)
-            preco_o    = st.number_input("💰 Preço atual (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5)
-            publico_o  = st.text_input("👤 Para quem é:", placeholder="ex: mulheres 25-45 anos com cabelo cacheado...")
+            produto_o  = st.text_input("📦 Produto principal:", value=st.session_state.produto_padrao, key="text_input___Produto_principal__L615")
+            preco_o    = st.number_input("💰 Preço atual (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5, key="number_input___Pre_o_atual__R____L616")
+            publico_o  = st.text_input("👤 Para quem é:", placeholder="ex: mulheres 25-45 anos com cabelo cacheado...", key="text_input___Para_quem____L617")
         with col2:
             elementos  = st.multiselect("🎁 Elementos da oferta:", [
                 "Kit de produtos","Order bump","Upsell","Cross-sell","Brinde","Frete grátis estratégico",
                 "Garantia estendida","Escassez (quantidade limitada)","Urgência (prazo)","Desconto progressivo",
                 "Parcelamento especial","Promoção sazonal","Combo família","Combo presente",
-            ], default=["Kit de produtos","Brinde","Garantia estendida","Escassez (quantidade limitada)"])
-            canal_o    = st.selectbox("📲 Canal da oferta:", ["WhatsApp","Instagram","Marketplace","Loja virtual","Presencial"])
+            ], default=["Kit de produtos","Brinde","Garantia estendida","Escassez (quantidade limitada)"], key="widget_multi_2")
+            canal_o    = st.selectbox("📲 Canal da oferta:", ["WhatsApp","Instagram","Marketplace","Loja virtual","Presencial"], key="selectbox___Canal_da_oferta__L624")
 
         if st.button("🛒 CRIAR OFERTA IRRESISTÍVEL"):
             if produto_o.strip():
@@ -676,15 +676,15 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            custo_prod   = st.number_input("💸 Custo do produto (R$):", min_value=0.0, value=float(st.session_state.preco_custo), step=0.5)
-            frete_medio  = st.number_input("🚚 Frete médio (R$):", min_value=0.0, value=0.0, step=0.5)
-            taxa_plat    = st.number_input("💳 Taxa da plataforma (%):", min_value=0.0, max_value=30.0, value=12.0, step=0.5)
-            custo_ads    = st.number_input("📢 Custo de anúncio por venda (R$):", min_value=0.0, value=0.0, step=0.5)
+            custo_prod   = st.number_input("💸 Custo do produto (R$):", min_value=0.0, value=float(st.session_state.preco_custo), step=0.5, key="number_input___Custo_do_produto__R____L679")
+            frete_medio  = st.number_input("🚚 Frete médio (R$):", min_value=0.0, value=0.0, step=0.5, key="number_input___Frete_m_dio__R____L680")
+            taxa_plat    = st.number_input("💳 Taxa da plataforma (%):", min_value=0.0, max_value=30.0, value=12.0, step=0.5, key="number_input___Taxa_da_plataforma______L681")
+            custo_ads    = st.number_input("📢 Custo de anúncio por venda (R$):", min_value=0.0, value=0.0, step=0.5, key="number_input___Custo_de_an_ncio_por_ve_L682")
         with col2:
-            preco_atual  = st.number_input("💰 Preço de venda (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5)
-            meta_vendas  = st.number_input("🎯 Meta de vendas por mês:", min_value=1, value=50, step=5)
-            nicho_prec   = st.text_input("🎯 Nicho:", value=st.session_state.nicho_padrao)
-            produto_prec = st.text_input("📦 Produto:", value=st.session_state.produto_padrao)
+            preco_atual  = st.number_input("💰 Preço de venda (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5, key="number_input___Pre_o_de_venda__R____L684")
+            meta_vendas  = st.number_input("🎯 Meta de vendas por mês:", min_value=1, value=50, step=5, key="number_input___Meta_de_vendas_por_m_s__L685")
+            nicho_prec   = st.text_input("🎯 Nicho:", value=st.session_state.nicho_padrao, key="text_input___Nicho__L686")
+            produto_prec = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, key="text_input___Produto__L687")
 
         # Cálculos automáticos
         if preco_atual > 0 and custo_prod > 0:
@@ -763,13 +763,13 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_av = st.text_input("📦 Produto:", value=st.session_state.produto_padrao)
-            nicho_av   = st.text_input("🎯 Nicho:", value=st.session_state.nicho_padrao)
+            produto_av = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, key="text_input___Produto__L766")
+            nicho_av   = st.text_input("🎯 Nicho:", value=st.session_state.nicho_padrao, key="text_input___Nicho__L767")
             palpite_av = st.text_area("🤔 O que você já sabe sobre seu cliente:", height=80,
-                placeholder="ex: mulheres de 30-45 anos, classe média, preocupadas com saúde...")
+                placeholder="ex: mulheres de 30-45 anos, classe média, preocupadas com saúde...", key="widget_multi_3")
         with col2:
-            preco_av   = st.number_input("💰 Preço do produto (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5)
-            canal_av   = st.selectbox("📲 Canal de venda:", ["WhatsApp","Instagram","Marketplace","Loja virtual","TikTok","Físico"])
+            preco_av   = st.number_input("💰 Preço do produto (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5, key="number_input___Pre_o_do_produto__R____L771")
+            canal_av   = st.selectbox("📲 Canal de venda:", ["WhatsApp","Instagram","Marketplace","Loja virtual","TikTok","Físico"], key="selectbox___Canal_de_venda__L772")
 
         if st.button("👤 CRIAR AVATAR COMPLETO"):
             if produto_av.strip():
@@ -844,17 +844,17 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_c  = st.text_input("📦 Produto:", value=st.session_state.produto_padrao)
-            descricao_c= st.text_area("📝 Descrição do produto:", height=80, placeholder="ex: creme leave-in 300ml, vegano, para cachos...")
-            publico_c  = st.text_input("👤 Público-alvo:", placeholder="ex: mulheres com cabelo cacheado...")
+            produto_c  = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, key="text_input___Produto__L847")
+            descricao_c= st.text_area("📝 Descrição do produto:", height=80, placeholder="ex: creme leave-in 300ml, vegano, para cachos...", key="text_area___Descri__o_do_produto__L848")
+            publico_c  = st.text_input("👤 Público-alvo:", placeholder="ex: mulheres com cabelo cacheado...", key="text_input___P_blico_alvo__L849")
         with col2:
             tipo_copy  = st.multiselect("📋 Que tipo de copy gerar:", [
                 "Título de venda","Descrição do produto","Bullet points (benefícios)",
                 "Storytelling do produto","Script de venda (conversa)","Copy emocional",
                 "Copy racional","CTA (chamada para ação)","Copy para marketplace",
-            ], default=["Título de venda","Bullet points (benefícios)","CTA (chamada para ação)"])
-            preco_c    = st.number_input("💰 Preço (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5)
-            tom_c      = st.radio("Tom:", ["Emocional e empático","Direto e racional","Urgente e escasso","Inspirador"], horizontal=True)
+            ], default=["Título de venda","Bullet points (benefícios)","CTA (chamada para ação)"], key="widget_multi_4")
+            preco_c    = st.number_input("💰 Preço (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5, key="number_input___Pre_o__R____L856")
+            tom_c      = st.radio("Tom:", ["Emocional e empático","Direto e racional","Urgente e escasso","Inspirador"], horizontal=True, key="radio_Tom__L857")
 
         if st.button("✍️ GERAR COPIES AGORA"):
             if produto_c.strip():
@@ -902,16 +902,16 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_ct = st.text_input("📦 Produto:", value=st.session_state.produto_padrao)
-            nicho_ct   = st.text_input("🎯 Nicho:", value=st.session_state.nicho_padrao)
-            plataformas= st.multiselect("📱 Plataformas:", ["Instagram","TikTok","YouTube Shorts","Facebook","Pinterest"], default=["Instagram","TikTok"])
+            produto_ct = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, key="text_input___Produto__L905")
+            nicho_ct   = st.text_input("🎯 Nicho:", value=st.session_state.nicho_padrao, key="text_input___Nicho__L906")
+            plataformas= st.multiselect("📱 Plataformas:", ["Instagram","TikTok","YouTube Shorts","Facebook","Pinterest"], default=["Instagram","TikTok"], key="multiselect___Plataformas__L907")
         with col2:
             tipo_cont  = st.selectbox("📋 O que gerar:", [
                 "Calendário editorial 30 dias","5 ideias de Reels/TikTok","10 ideias de posts",
                 "3 sequências de Stories","5 ganchos virais","Roteiro de vídeo de venda",
                 "Ideias de conteúdo educativo","Conteúdo de bastidores",
-            ])
-            frequencia = st.selectbox("⏰ Frequência de postagem:", ["1x por dia","3x por semana","5x por semana","7x por semana"])
+            ], key="widget_multi_5")
+            frequencia = st.selectbox("⏰ Frequência de postagem:", ["1x por dia","3x por semana","5x por semana","7x por semana"], key="selectbox___Frequ_ncia_de_postagem__L914")
 
         if st.button("📱 GERAR CONTEÚDO"):
             if produto_ct.strip():
@@ -966,16 +966,16 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_cr = st.text_input("📦 Produto:", value=st.session_state.produto_padrao)
-            publico_cr = st.text_input("👤 Público:", placeholder="ex: mulheres 25-40, homens que praticam academia...")
-            plataforma_cr = st.selectbox("📢 Plataforma do anúncio:", ["Meta Ads (Instagram/Facebook)","TikTok Ads","Google Ads","YouTube Ads"])
+            produto_cr = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, key="text_input___Produto__L969")
+            publico_cr = st.text_input("👤 Público:", placeholder="ex: mulheres 25-40, homens que praticam academia...", key="text_input___P_blico__L970")
+            plataforma_cr = st.selectbox("📢 Plataforma do anúncio:", ["Meta Ads (Instagram/Facebook)","TikTok Ads","Google Ads","YouTube Ads"], key="selectbox___Plataforma_do_an_ncio__L971")
         with col2:
             tipo_cr    = st.multiselect("🎬 O que gerar:", [
                 "Script UGC (depoimento real)","Script de vídeo de venda","3 headlines para testar",
                 "Ângulos de venda (A/B)","Estrutura de anúncio vencedor","Copy para imagem estática",
                 "Ideia de criativo nativo",
-            ], default=["Script UGC (depoimento real)","3 headlines para testar","Ângulos de venda (A/B)"])
-            objetivo_cr= st.radio("Objetivo do anúncio:", ["Venda direta","Lead/WhatsApp","Tráfego para loja","Reconhecimento"], horizontal=True)
+            ], default=["Script UGC (depoimento real)","3 headlines para testar","Ângulos de venda (A/B)"], key="widget_multi_6")
+            objetivo_cr= st.radio("Objetivo do anúncio:", ["Venda direta","Lead/WhatsApp","Tráfego para loja","Reconhecimento"], horizontal=True, key="radio_Objetivo_do_an_ncio__L978")
 
         if st.button("🎥 GERAR CRIATIVOS"):
             if produto_cr.strip():
@@ -1031,16 +1031,16 @@ elif st.session_state.etapa == "App":
         with tab1:
             col1, col2 = st.columns(2)
             with col1:
-                produto_f  = st.text_input("📦 Produto:", value=st.session_state.produto_padrao)
-                preco_f    = st.number_input("💰 Preço (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5)
+                produto_f  = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, key="text_input___Produto__L1034")
+                preco_f    = st.number_input("💰 Preço (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5, key="number_input___Pre_o__R____L1035")
                 situacao_f = st.selectbox("📍 Situação:", [
                     "Primeiro contato (lead frio)","Pessoa perguntou o preço","Pessoa pediu mais informações",
                     "Pessoa sumiu após ver o preço","Recuperação de carrinho abandonado",
                     "Follow-up após 24h sem resposta","Indicação de cliente",
-                ])
+                ], key="widget_multi_7")
             with col2:
-                canal_f    = st.selectbox("📲 Canal:", ["WhatsApp","Instagram DM","Facebook Messenger"])
-                tom_f      = st.radio("Tom:", ["Consultivo e empático","Direto e objetivo","Amigável e descontraído"], horizontal=True)
+                canal_f    = st.selectbox("📲 Canal:", ["WhatsApp","Instagram DM","Facebook Messenger"], key="selectbox___Canal__L1042")
+                tom_f      = st.radio("Tom:", ["Consultivo e empático","Direto e objetivo","Amigável e descontraído"], horizontal=True, key="radio_Tom__L1043")
 
             if st.button("💬 GERAR SCRIPTS DE FECHAMENTO"):
                 if produto_f.strip():
@@ -1089,7 +1089,7 @@ elif st.session_state.etapa == "App":
                 "Tem garantia?","Meu marido/esposa decide",
                 "Já tenho um parecido","Encontrei mais barato",
                 "Não sei se vai funcionar pra mim","Tô desempregado",
-            ], default=["Tá caro / Não tenho dinheiro","Vou pensar / Deixa eu ver","Não confio / Não te conheço"])
+            ], default=["Tá caro / Não tenho dinheiro","Vou pensar / Deixa eu ver","Não confio / Não te conheço"], key="widget_multi_8")
 
             if st.button("🛡️ GERAR QUEBRA DE OBJEÇÕES", key="btn_obj"):
                 if produto_obj.strip() and objecoes:
@@ -1139,15 +1139,15 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_at = st.text_input("📦 Produto:", value=st.session_state.produto_padrao)
-            preco_at   = st.number_input("💰 Preço (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5)
-            prazo_entrega = st.text_input("🚚 Prazo de entrega:", placeholder="ex: 5-10 dias úteis, entrega no dia seguinte...")
+            produto_at = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, key="text_input___Produto__L1142")
+            preco_at   = st.number_input("💰 Preço (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5, key="number_input___Pre_o__R____L1143")
+            prazo_entrega = st.text_input("🚚 Prazo de entrega:", placeholder="ex: 5-10 dias úteis, entrega no dia seguinte...", key="text_input___Prazo_de_entrega__L1144")
         with col2:
             tipo_at    = st.selectbox("📋 O que gerar:", [
                 "FAQ completo do produto","Respostas automáticas (WhatsApp Business)","Scripts de pós-venda",
                 "Recuperação de clientes frios","Scripts de recompra","Respostas para reclamações",
-            ])
-            canal_at   = st.selectbox("📲 Canal:", ["WhatsApp","Instagram","Marketplace","E-mail"])
+            ], key="widget_multi_9")
+            canal_at   = st.selectbox("📲 Canal:", ["WhatsApp","Instagram","Marketplace","E-mail"], key="selectbox___Canal__L1150")
 
         if st.button("🤖 GERAR ATENDIMENTO AUTOMÁTICO"):
             if produto_at.strip():
@@ -1204,12 +1204,12 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_mk = st.text_input("📦 Produto:", value=st.session_state.produto_padrao)
-            marketplace= st.selectbox("🛍️ Marketplace:", ["Mercado Livre","Shopee","Amazon Brasil","Magalu Marketplace","Facebook Marketplace"])
-            preco_mk   = st.number_input("💰 Preço (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5)
+            produto_mk = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, key="text_input___Produto__L1207")
+            marketplace= st.selectbox("🛍️ Marketplace:", ["Mercado Livre","Shopee","Amazon Brasil","Magalu Marketplace","Facebook Marketplace"], key="selectbox____Marketplace__L1208")
+            preco_mk   = st.number_input("💰 Preço (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5, key="number_input___Pre_o__R____L1209")
         with col2:
-            concorrentes_mk = st.text_input("🏆 Concorrentes no marketplace:", placeholder="ex: marcas que já vendem bem isso lá...")
-            objetivo_mk= st.selectbox("🎯 Objetivo:", ["Entrar no marketplace","Aumentar vendas","Melhorar posicionamento","Virar top seller"])
+            concorrentes_mk = st.text_input("🏆 Concorrentes no marketplace:", placeholder="ex: marcas que já vendem bem isso lá...", key="text_input___Concorrentes_no_marketp_L1211")
+            objetivo_mk= st.selectbox("🎯 Objetivo:", ["Entrar no marketplace","Aumentar vendas","Melhorar posicionamento","Virar top seller"], key="selectbox___Objetivo__L1212")
 
         if st.button("🛍️ GERAR ESTRATÉGIA DE MARKETPLACE"):
             if produto_mk.strip():
@@ -1269,11 +1269,11 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_lv = st.text_input("📦 Produto:", value=st.session_state.produto_padrao)
-            plataforma_lv = st.selectbox("🌐 Plataforma:", ["Shopify","Nuvemshop","WooCommerce","Loja Integrada","Hotmart (físico)","Criar do zero"])
+            produto_lv = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, key="text_input___Produto__L1272")
+            plataforma_lv = st.selectbox("🌐 Plataforma:", ["Shopify","Nuvemshop","WooCommerce","Loja Integrada","Hotmart (físico)","Criar do zero"], key="selectbox___Plataforma__L1273")
         with col2:
             problema_lv= st.text_area("⚠️ Qual problema da sua loja:", height=80,
-                placeholder="ex: muita visita e pouca venda, taxa de abandono alta, conversão baixa...")
+                placeholder="ex: muita visita e pouca venda, taxa de abandono alta, conversão baixa...", key="widget_multi_10")
 
         if st.button("🌐 GERAR ESTRATÉGIA DE LOJA"):
             if produto_lv.strip():
@@ -1330,13 +1330,13 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_tp = st.text_input("📦 Produto:", value=st.session_state.produto_padrao)
-            orcamento_tp = st.number_input("💰 Orçamento disponível (R$/mês):", min_value=100, max_value=100000, value=500, step=100)
-            plataformas_tp = st.multiselect("📢 Plataformas:", ["Meta Ads","Google Ads","TikTok Ads"], default=["Meta Ads"])
+            produto_tp = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, key="text_input___Produto__L1333")
+            orcamento_tp = st.number_input("💰 Orçamento disponível (R$/mês):", min_value=100, max_value=100000, value=500, step=100, key="number_input___Or_amento_dispon_vel__R_L1334")
+            plataformas_tp = st.multiselect("📢 Plataformas:", ["Meta Ads","Google Ads","TikTok Ads"], default=["Meta Ads"], key="multiselect___Plataformas__L1335")
         with col2:
-            experiencia_tp = st.selectbox("📊 Experiência com tráfego:", ["Nunca anunciei","Já anunciei mas não converti","Anuncio mas quero escalar"])
-            objetivo_tp    = st.selectbox("🎯 Objetivo:", ["Vendas diretas","Leads para WhatsApp","Tráfego para marketplace","Reconhecimento de marca"])
-            preco_tp       = st.number_input("💰 Preço do produto (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5)
+            experiencia_tp = st.selectbox("📊 Experiência com tráfego:", ["Nunca anunciei","Já anunciei mas não converti","Anuncio mas quero escalar"], key="selectbox___Experi_ncia_com_tr_fego_L1337")
+            objetivo_tp    = st.selectbox("🎯 Objetivo:", ["Vendas diretas","Leads para WhatsApp","Tráfego para marketplace","Reconhecimento de marca"], key="selectbox___Objetivo__L1338")
+            preco_tp       = st.number_input("💰 Preço do produto (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5, key="number_input___Pre_o_do_produto__R____L1339")
 
         if st.button("📢 GERAR ESTRATÉGIA DE TRÁFEGO"):
             if produto_tp.strip():
@@ -1396,14 +1396,14 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_loc = st.text_input("📦 Produto:", value=st.session_state.produto_padrao)
-            cidade_loc  = st.text_input("📍 Sua cidade/bairro:", placeholder="ex: Fortaleza - CE, Lapa - SP...")
+            produto_loc = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, key="text_input___Produto__L1399")
+            cidade_loc  = st.text_input("📍 Sua cidade/bairro:", placeholder="ex: Fortaleza - CE, Lapa - SP...", key="text_input___Sua_cidade_bairro__L1400")
         with col2:
             canais_loc  = st.multiselect("📲 Canais locais:", [
                 "WhatsApp e grupos locais","Google Meu Negócio","Facebook Marketplace",
                 "Delivery (iFood/Rappi)","Panfletagem e offline","Parcerias com comércios",
                 "Instagram com geolocalização",
-            ], default=["WhatsApp e grupos locais","Google Meu Negócio"])
+            ], default=["WhatsApp e grupos locais","Google Meu Negócio"], key="widget_multi_11")
 
         if st.button("📍 GERAR ESTRATÉGIA LOCAL"):
             if produto_loc.strip():
@@ -1467,12 +1467,12 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_es = st.text_input("📦 Produto:", value=st.session_state.produto_padrao)
-            fat_atual  = st.text_input("💰 Faturamento atual:", placeholder="ex: R$3.000/mês, R$15.000/mês...")
-            meta_es    = st.text_input("🎯 Meta de faturamento:", placeholder="ex: R$30.000/mês, R$100.000/mês...")
+            produto_es = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, key="text_input___Produto__L1470")
+            fat_atual  = st.text_input("💰 Faturamento atual:", placeholder="ex: R$3.000/mês, R$15.000/mês...", key="text_input___Faturamento_atual__L1471")
+            meta_es    = st.text_input("🎯 Meta de faturamento:", placeholder="ex: R$30.000/mês, R$100.000/mês...", key="text_input___Meta_de_faturamento__L1472")
         with col2:
             gargalo_es = st.text_area("🔧 Maior gargalo hoje:", height=80,
-                placeholder="ex: não consigo atender tudo sozinho, não tenho capital para estoque, demoro muito para produzir...")
+                placeholder="ex: não consigo atender tudo sozinho, não tenho capital para estoque, demoro muito para produzir...", key="widget_multi_12")
 
         if st.button("📈 GERAR PLANO DE ESCALA"):
             if produto_es.strip():
@@ -1528,13 +1528,13 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_val = st.text_input("📦 Produto que quer validar:", placeholder="ex: soro capilar para liso, nécessaire personalizada...")
-            custo_val   = st.number_input("💸 Custo estimado (R$):", min_value=0.0, value=0.0, step=0.5)
-            preco_val   = st.number_input("💰 Preço que pensa em cobrar (R$):", min_value=0.0, value=0.0, step=0.5)
+            produto_val = st.text_input("📦 Produto que quer validar:", placeholder="ex: soro capilar para liso, nécessaire personalizada...", key="text_input___Produto_que_quer_valida_L1531")
+            custo_val   = st.number_input("💸 Custo estimado (R$):", min_value=0.0, value=0.0, step=0.5, key="number_input___Custo_estimado__R____L1532")
+            preco_val   = st.number_input("💰 Preço que pensa em cobrar (R$):", min_value=0.0, value=0.0, step=0.5, key="number_input___Pre_o_que_pensa_em_cobr_L1533")
         with col2:
             mercado_val = st.text_area("🤔 Por que você quer vender isso:", height=80,
-                placeholder="ex: vi muita gente pedindo, está na tendência, minha amiga vende bem...")
-            capital_val = st.text_input("💰 Capital para investir:", placeholder="ex: R$500, R$2.000...")
+                placeholder="ex: vi muita gente pedindo, está na tendência, minha amiga vende bem...", key="widget_multi_13")
+            capital_val = st.text_input("💰 Capital para investir:", placeholder="ex: R$500, R$2.000...", key="text_input___Capital_para_investir__L1537")
 
         if st.button("🧪 VALIDAR MEU PRODUTO"):
             if produto_val.strip():
@@ -1592,14 +1592,14 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_au = st.text_input("📦 Produto:", value=st.session_state.produto_padrao)
-            preco_au   = st.number_input("💰 Preço (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5)
-            visitas_au = st.text_input("👁️ Visitas/visualizações por dia:", placeholder="ex: 50 visitas na loja, 200 visualizações no story...")
-            vendas_au  = st.text_input("💸 Vendas por semana:", placeholder="ex: 2 vendas, 10 vendas, quase nenhuma...")
+            produto_au = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, key="text_input___Produto__L1595")
+            preco_au   = st.number_input("💰 Preço (R$):", min_value=0.0, value=float(st.session_state.preco_venda), step=0.5, key="number_input___Pre_o__R____L1596")
+            visitas_au = st.text_input("👁️ Visitas/visualizações por dia:", placeholder="ex: 50 visitas na loja, 200 visualizações no story...", key="text_input____Visitas_visualiza__es__L1597")
+            vendas_au  = st.text_input("💸 Vendas por semana:", placeholder="ex: 2 vendas, 10 vendas, quase nenhuma...", key="text_input___Vendas_por_semana__L1598")
         with col2:
-            canal_au   = st.text_input("📲 Canal de venda:", value=st.session_state.canal_padrao)
-            copy_au    = st.text_area("✍️ Sua descrição/copy atual (cole aqui):", height=80, placeholder="Cole o texto que você usa para vender...")
-            estrategia = st.text_area("📋 O que você já tentou fazer:", height=60, placeholder="ex: já postei no Instagram, rodei anúncio, abaixei o preço...")
+            canal_au   = st.text_input("📲 Canal de venda:", value=st.session_state.canal_padrao, key="text_input___Canal_de_venda__L1600")
+            copy_au    = st.text_area("✍️ Sua descrição/copy atual (cole aqui):", height=80, placeholder="Cole o texto que você usa para vender...", key="text_area____Sua_descri__o_copy_atu_L1601")
+            estrategia = st.text_area("📋 O que você já tentou fazer:", height=60, placeholder="ex: já postei no Instagram, rodei anúncio, abaixei o preço...", key="text_area___O_que_voc__j__tentou_fa_L1602")
 
         if st.button("📊 AUDITAR MEU NEGÓCIO"):
             if produto_au.strip():
@@ -1660,13 +1660,13 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_est = st.text_input("📦 Produto:", value=st.session_state.produto_padrao)
-            qtd_estoque = st.number_input("📦 Quantidade em estoque:", min_value=0, value=50, step=5)
-            vendas_mes  = st.number_input("💸 Vendas médias por mês:", min_value=0, value=20, step=5)
+            produto_est = st.text_input("📦 Produto:", value=st.session_state.produto_padrao, key="text_input___Produto__L1663")
+            qtd_estoque = st.number_input("📦 Quantidade em estoque:", min_value=0, value=50, step=5, key="number_input___Quantidade_em_estoque__L1664")
+            vendas_mes  = st.number_input("💸 Vendas médias por mês:", min_value=0, value=20, step=5, key="number_input___Vendas_m_dias_por_m_s__L1665")
         with col2:
-            custo_est   = st.number_input("💸 Custo por unidade (R$):", min_value=0.0, value=float(st.session_state.preco_custo), step=0.5)
-            prazo_forn  = st.number_input("🚚 Prazo do fornecedor (dias):", min_value=1, value=15, step=1)
-            problema_est= st.text_input("⚠️ Problema atual:", placeholder="ex: muito estoque parado, sempre falta produto, não sei quando comprar...")
+            custo_est   = st.number_input("💸 Custo por unidade (R$):", min_value=0.0, value=float(st.session_state.preco_custo), step=0.5, key="number_input___Custo_por_unidade__R____L1667")
+            prazo_forn  = st.number_input("🚚 Prazo do fornecedor (dias):", min_value=1, value=15, step=1, key="number_input___Prazo_do_fornecedor__di_L1668")
+            problema_est= st.text_input("⚠️ Problema atual:", placeholder="ex: muito estoque parado, sempre falta produto, não sei quando comprar...", key="text_input____Problema_atual__L1669")
 
         if st.button("📦 GERAR PLANO DE GESTÃO DE ESTOQUE"):
             if produto_est.strip():
@@ -1724,16 +1724,16 @@ elif st.session_state.etapa == "App":
 
         col1, col2 = st.columns(2)
         with col1:
-            produto_br2 = st.text_input("📦 Produto/linha de produtos:", value=st.session_state.produto_padrao)
-            nicho_br2   = st.text_input("🎯 Nicho:", value=st.session_state.nicho_padrao)
-            publico_br2 = st.text_input("👤 Público-alvo:", placeholder="ex: mulheres empreendedoras 28-45 anos...")
+            produto_br2 = st.text_input("📦 Produto/linha de produtos:", value=st.session_state.produto_padrao, key="text_input___Produto_linha_de_produt_L1727")
+            nicho_br2   = st.text_input("🎯 Nicho:", value=st.session_state.nicho_padrao, key="text_input___Nicho__L1728")
+            publico_br2 = st.text_input("👤 Público-alvo:", placeholder="ex: mulheres empreendedoras 28-45 anos...", key="text_input___P_blico_alvo__L1729")
         with col2:
-            tem_nome    = st.text_input("🏷️ Nome atual (se tiver):", placeholder="ex: Beleza Natural, Produtos do João...")
+            tem_nome    = st.text_input("🏷️ Nome atual (se tiver):", placeholder="ex: Beleza Natural, Produtos do João...", key="text_input____Nome_atual__se_tiver___L1731")
             posiciona   = st.selectbox("🎯 Posicionamento desejado:", [
                 "Premium/exclusivo","Popular/acessível","Natural/sustentável",
                 "Científico/técnico","Emocional/lifestyle","Local/artesanal",
-            ])
-            valores     = st.text_input("💎 Valores da marca:", placeholder="ex: autenticidade, sustentabilidade, resultado...")
+            ], key="widget_multi_14")
+            valores     = st.text_input("💎 Valores da marca:", placeholder="ex: autenticidade, sustentabilidade, resultado...", key="text_input___Valores_da_marca__L1736")
 
         if st.button("💎 CRIAR IDENTIDADE DE MARCA"):
             if produto_br2.strip():
